@@ -53,6 +53,16 @@ namespace events_tests {
     let any: any;
 
     {
+        // Test documented use pattern from http://nodejs.org/api/events.html which seems to require a default export.
+        const EventEmitter = require('events');
+
+        class MyEmitter extends EventEmitter {}
+
+        const myEmitter = new MyEmitter();
+
+    }
+
+    {
         let result: events.EventEmitter;
 
         result = emitter.addListener(event, listener);
