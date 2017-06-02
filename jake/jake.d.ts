@@ -268,16 +268,25 @@ declare namespace jake{
 		(filename:string): boolean;
 	}
 
+	// Note: the FileList class implemented is actually 
+	// at https://github.com/mde/filelist/blob/master/index.js
+
 	export class FileList{
+		/**
+		 * Constructor can be passed one or more file name patterns, like include.
+		 */
 		constructor();
+		constructor(files:string[]);
+		constructor(...files:string[]);
 
 		/**
 	     * Includes file-patterns in the FileList. Should be called with one or more
 		 * pattern for finding file to include in the list. Arguments should be strings
-		 * for either a glob-pattern or a specific file-name, or an array of them
+		 * for either a glob-pattern or a specific file-name, or an array of them.
+		 * Returns the original FileList object to allow chainable call style.
 		 */
-		include(files:string[]): void;
-		include(...files:string[]): void;
+		include(files:string[]): this;
+		include(...files:string[]): this;
 
 		/**
 		 * Indicates whether a particular file would be filtered out by the current
@@ -293,13 +302,14 @@ declare namespace jake{
 		 * 1. Strings for either a glob-pattern or a specific file-name
 		 * 2. Regular expression literals
 		 * 3. Functions to be run on the filename that return a true/false
+		 * Returns the original FileList object to allow chainable call style.
 		 */
-		exclude(file:string[]): void;
-		exclude(...file:string[]): void;
-		exclude(file:RegExp[]): void;
-		exclude(...file:RegExp[]): void;
-		exclude(file:FileFilter[]): void;
-		exclude(...file:FileFilter[]): void;
+		exclude(file:string[]): this;
+		exclude(...file:string[]): this;
+		exclude(file:RegExp[]): this;
+		exclude(...file:RegExp[]): this;
+		exclude(file:FileFilter[]): this;
+		exclude(...file:FileFilter[]): this;
 
 		/**
 		 * Populates the FileList from the include/exclude rules with a list of
@@ -314,8 +324,9 @@ declare namespace jake{
 
 		/**
 	 	 * Get rid of any current exclusion rules
+		 * Returns the original FileList object to allow chainable call style.
       	 */
-  		clearExclude(): void;
+  		clearExclusions(): this;
 	}
 
 	export class PackageTask{

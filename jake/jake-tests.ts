@@ -216,13 +216,12 @@ function hoge(){
 }
 
 var list = new jake.FileList();
-list.include('foo/*.txt');
-list.include(['bar/*.txt', 'README.md']);
-list.include('Makefile', 'package.json');
-list.exclude('foo/zoobie.txt');
+list.include('foo/*.txt')
+    .include(['bar/*.txt', 'README.md']);
+list.include('Makefile', 'package.json')
+    .exclude('foo/zoobie.txt');
 list.exclude(/foo\/src.*.txt/);
 console.log(list.toArray());
-
 
 var t = new jake.TestTask('fonebone', function () {
   var fileList = [
