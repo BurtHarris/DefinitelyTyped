@@ -105,6 +105,12 @@ export interface SrcOptions extends globStream.Options {
     * Default: true
     */
    removeBOM?: boolean;
+
+   /**
+    * Custom options are permitted, and will be reflected as custom properties of the generated vinyl objcts.
+    * Default: none
+    */
+   [custom: string]: any;
 }
 
 export interface DestOptions {
